@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM docker:latest AS build
+FROM docker:dind AS build
 
 # Install dependencies
 RUN apk update && \

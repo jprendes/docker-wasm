@@ -19,7 +19,7 @@ function docker-wasm-start {
             --name docker-wasm \
             docker-wasm \
             /bin/sh -c \
-                "addgroup -g $(getent group docker | cut -d: -f3) docker && dockerd --host unix:///var/run/docker-wasm/docker.sock" \
+                "addgroup -g $(getent group docker | cut -d: -f3) docker && dind dockerd --host unix:///var/run/docker-wasm/docker.sock" \
             > /dev/null
         
         # Give docker time to start
