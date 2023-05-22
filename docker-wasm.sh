@@ -14,13 +14,12 @@ function docker-wasm-start {
         # Run a wasm-capable docker
         docker run --rm -d \
             --privileged \
-            -v /var/lib/docker \
             -v /sys/fs/cgroup:/sys/fs/cgroup \
-            -v /var/run/docker-wasm:/var/run \
+            -v /var/run/docker-wasm:/var/run/docker-wasm \
             --name docker-wasm \
             docker-wasm \
-            bash -c \
-                "groupadd -g $(getent group docker | cut -d: -f3) docker && rm -Rf /var/run/{containerd*,docker*} && dockerd -G docker" \
+            /bin/sh -c \
+                "addgroup -g $(getent group docker | cut -d: -f3) docker && dockerd --host unix:///var/run/docker-wasm/docker.sock" \
             > /dev/null
         
         # Give docker time to start
