@@ -14,7 +14,6 @@ function docker-wasm-start {
         # Run a wasm-capable docker
         docker run --rm -d \
             --privileged \
-            -v /sys/fs/cgroup:/sys/fs/cgroup \
             -v /var/run/docker-wasm:/var/run/docker-wasm \
             --name docker-wasm \
             docker-wasm \
